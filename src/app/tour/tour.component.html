@@ -1,0 +1,92 @@
+<md-sidenav-container class="app-sidenav-container">
+  <md-sidenav #sidenav mode="push" opened="false">
+    <div class="app-scrolling-content">
+      <md-list>
+        <md-list-item *ngFor="let area of areas; let i = index">
+          <button (click)="onAreaChange(i)" md-button>
+            {{area.name}}
+          </button>
+        </md-list-item>
+      </md-list>
+    </div>
+  </md-sidenav>
+  <md-toolbar color="primary">
+    <button class="app-icon-button" (click)="sidenav.toggle()" md-tooltip="メニュー">
+      <i class="material-icons app-toolbar-menu">menu</i>
+    </button>
+    <h3>人気の海外旅行</h3>
+  </md-toolbar>
+  <div class="app-scrolling-content">
+    <md-card *ngIf="selectedData && !isMobile">
+      <table
+        class="table table-bordered table-hover table-striped mat-elevation-z6"
+      >
+        <tr
+          *ngFor="let data of selectedData; let i = index">
+          <td class="td_id">{{i+1}}<br>
+            <i class="material-icons bookMark-Icon"
+               (click)="onBookmarkClick(data.id, i)"
+               [class.marked]="isMarked(data.id)"
+               [class.noMarked]="!isMarked(data.id)"
+               md-tooltip="お気に入りに登録"
+            >bookmark</i>
+          </td>
+          <td class="td_country">
+            {{data.dest?.country?.name}}
+          </td>
+          <td class="td_photo">
+            <img
+              [src]="data.img[0]?.s"
+              *ngIf="data.img[0]">
+          </td>
+          <td class="td_price">
+        <span class="priceFont">
+        {{data.price?.min | number }}
+        </span>円～
+          </td>
+          <td class="td_description">
+            {{data.title}}
+          </td>
+          <td class="td_link">
+            <button md-raised-button color="primary"
+                    (click)="onDetailClick(i)">
+              詳細
+            </button>
+          </td>
+        </tr>
+      </table>
+    </md-card>
+
+    <!--モバイル用 isMobileがtrueの時-->
+    <md-card *ngIf="selectedData && isMobile">
+      <table class="table table-bordered mat-elevation-z6">
+        <tr
+          *ngFor="let data of selectedData; let i = index">
+          <td class="td_photo_mobile">
+            <img
+              [src]="data?.img[0]?.s"
+              class="mobileImg">
+          </td>
+          <td class="mobileText">
+            <!--#{{i+1}}-->
+            <i class="material-icons bookMark-Icon"
+               (click)="onBookmarkClick(data.id, i)"
+               [class.marked]="isMarked(data.id)"
+               [class.noMarked]="!isMarked(data.id)"
+            >bookmark</i>
+            {{data.dest?.country?.name}}
+            <span class="priceFont">
+          {{data.price.min | number }}</span>円～
+            <br>
+            {{data.title}}
+            <button md-raised-button
+                    (click)="onDetailClick(i)"
+                    color="primary">
+              詳細
+            </button>
+          </td>
+        </tr>
+      </table>
+    </md-card>
+  </div>
+</md-sidenav-container>

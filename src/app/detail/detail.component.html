@@ -1,0 +1,42 @@
+<div *ngIf="tourData.tour?.title">
+  <h1 md-dialog-title>{{tourData.tour.dest?.country?.name}}</h1>
+  <div md-dialog-content>
+    <div class="col-xs-12 col-sm-6">
+      <carousel [interval]="3000">
+        <slide
+          *ngFor="let slide of tourData.tour.img; let index=index">
+          <img [src]="slide.l">
+          <div class="carousel-caption"></div>
+          <div class="detailCaption">{{slide.caption}}</div>
+        </slide>
+      </carousel>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+
+      <br />
+      <p class="detailLabel">価格</p>
+      <p>{{tourData.tour.price?.min | number }}
+        ～{{tourData.tour.price?.max | number }}円
+      </p>
+      <p class="detailLabel">ツアー名</p>
+      <p>{{tourData.tour.title}}</p>
+      <p class="detailLabel">期間</p>
+      <p>{{tourData.tour.term}}日間</p>
+      <p class="detailLabel">訪問地</p>
+      <p>
+        <span *ngFor="let schedule of tourData.tour.sche">
+          ({{schedule.day}}日目)
+          {{schedule.city?.name || "帰国"}}<br>
+        </span>
+      </p>
+      <p class="detailLabel">出発地/航空会社</p>
+      <p>{{tourData.tour.dept_city?.name}}<br>
+        {{tourData.tour.airline_summary}}
+      </p>
+    </div>
+  </div>
+  <div md-dialog-actions>
+    <button md-raised-button color="accent" (click)="dialogRef.close(tourData.tour.id)">{{bookMark}}</button>
+    <button md-raised-button color="warn" (click)="dialogRef.close()">閉じる</button>
+  </div>
+</div>

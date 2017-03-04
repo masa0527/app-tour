@@ -1,0 +1,108 @@
+:host {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  display: -webkit-flex;
+  display: flex;
+  overflow-y: auto;
+}
+
+.app-sidenav-container {
+  width: 100%;
+  md-sidenav {
+    min-width: 200px;
+    display: flex;
+  }
+}
+
+.app-icon-button {
+  box-shadow: none;
+  user-select: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  filter: none;
+  font-weight: normal;
+  height: auto;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-decoration: none;
+}
+
+.app-scrolling-content {
+  overflow: auto;
+  padding: 5px;
+}
+
+h3 {
+  padding: 24px 8px;
+  margin: 20px 0px 20px 0px;
+}
+
+md-card {
+  margin: 20px;
+}
+
+.noMarked{
+  color:darkgray;
+}
+
+.marked{
+  color:red;
+}
+
+.bookMark-Icon {
+  cursor: pointer;
+}
+
+.priceFont{
+  font-weight:bold;
+  color:red;
+}
+
+tr{
+  height:90px;
+}
+
+td {
+  padding: 0.3em;
+}
+
+.td_id {
+  width: 3em;
+  text-align: center;
+}
+
+.td_country {
+  width: 7em;
+  text-align: left;
+}
+
+.td_photo {
+  width: 120px;
+  text-align: center;
+}
+
+.td_price {
+  width: 8em;
+  font-size:1.2em;
+  text-align: right;
+  color:red;
+}
+
+.td_description {
+  text-align: left;
+  font-size:1.1em;
+}
+
+.td_link {
+  width: 3em;
+  text-align: center;
+}
+
+img{
+  max-width: 130px;
+  height:86px;
+}
